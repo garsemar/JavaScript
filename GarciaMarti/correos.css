@@ -1,0 +1,52 @@
+
+
+table.carta {
+    width: 100%;
+}
+
+tr {
+    border: 2px;
+
+}
+
+td, th {
+    vertical-align: text-top;
+    text-align: left;
+    padding: 5px;
+    border: 0px;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding: 0;
+    margin: 0;
+}
+div div{
+    flex-direction: column;
+    width: 50%;
+}
+div div:first-child{
+    margin-right: 0%;
+    margin-right: 2px;
+}
+p{
+    margin-left: 30px;
+}
+div div h2{
+    background-color: grey;
+}
+
+.urg{
+    border: 3px solid red;
+}
+.urgNo{
+    border: 3px solid black;
+}
+
+
+.titulo {
+    text-transform: uppercase;
+    background-color:lightgray;
+}
