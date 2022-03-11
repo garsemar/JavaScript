@@ -1,3 +1,4 @@
+console.log('Exercici 1')
 function mayor(num1, num2){
     if(num1 > num2){
         return num1
