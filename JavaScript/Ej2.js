@@ -5,7 +5,7 @@ function randomNumber(min, max){
 
 function count(num){
     let count = 0
-    for(i = 0; i <= codigoSecreto.length; i++){
+    for(let i = 0; i <= codigoSecreto.length; i++){
         if(codigoSecreto[i] == num){
             count += 1
         }
@@ -15,22 +15,21 @@ function count(num){
 
 function createList(){
     list = []
-    for(i = 0; i <= 4; i++){
-        list.push(parseInt(prompt()))
+    for(let i = 0; i <= 4; i++){
+        list.push(parseInt(prompt('Numero per la posicio ' + (i+1))))
     }
     return list
 }
 
 function validPos(list){
     res = ['-', '-', '-', '-', '-']
-    for(i = 0; i <= list.length-1; i++){
-        for(j = 0; j <= codigoSecreto.length-1; j++){
-            if(list[i] == codigoSecreto[j]){
-                if(i == j){
-                    res[i] = 'Ok'
-                }else if(i != j){
-                    res[i] = count(list[i])
-                }
+    for(let i = 0; i <= list.length-1; i++){
+        for(let j = 0; j <= codigoSecreto.length-1; j++){
+            if(list[i] == codigoSecreto[j] && i == j){
+                res[i] = 'Ok'
+                break
+            }else if(list[i] == codigoSecreto[j]){
+                res[i] = count(list[i])
             }
         }
     }
@@ -39,7 +38,7 @@ function validPos(list){
 
 var codigoSecreto = []
 
-for(i = 1; i <= 5; i++){
+for(let i = 1; i <= 5; i++){
     codigoSecreto.push(randomNumber(1, 10))
 }
 
