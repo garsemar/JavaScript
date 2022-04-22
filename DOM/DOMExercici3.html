@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="change()">
+        <p id="a">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam excepturi quasi non tempora molestiae laudantium perspiciatis cupiditate eaque blanditiis, numquam tempore consectetur? Cum minima dolor adipisci at quam soluta beatae.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero nisi neque repudiandae iure illum, voluptatum molestiae eligendi velit asperiores? Odio beatae fuga reprehenderit quae consequatur praesentium vitae cum obcaecati dicta.
+        </p>
+        <input type="submit" value="submit">
+    </form>
+</body>
+<script>
+    function change(){
+        let a = document.getElementsByTagName("p")
+        for(i=0;i<a.length;i++){
+            a[i].style.backgroundColor="red"
+            a[i].removeAttribute("id")
+            event.preventDefault()
+        }
+    }
+</script>
+</html>

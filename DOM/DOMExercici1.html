@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Exercicis de paràgrafs de Document Object Model</title>
+</head>
+
+<body>
+    <p id="text">Text a canviar amb JavaScript</p>
+    <div>
+        <button id="estiljs" onclick="estiljs()">Canvi d'estil</button>
+    </div>
+    <script>
+        function estiljs(){
+            let a = document.getElementsByTagName("p")
+            a.item(0).style.color="red"
+            a.item(0).style.fontSize="40px"
+        }
+    </script>
+</body>
+
+</html>
