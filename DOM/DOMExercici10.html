@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>10</title>
+</head>
+<body>
+    <input type="text" id="altura" value="Altura"><br>
+    <input type="text" id="radio" value="Radio"><br>
+    <input type="button" value="Submit" onclick="volum()">
+</body>
+<script>
+    function volum(){
+        let altura = document.getElementById('altura').value
+        let radio = document.getElementById('radio').value
+
+        alert(parseFloat("3.14")*altura*(radio*radio))
+    }
+</script>
+</html>
