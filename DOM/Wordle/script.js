@@ -12,6 +12,7 @@ function codigoSecreto() {
 codigoSecreto();
 
 let curRow = 0
+let turns = maxIntento
 function Comprobar(){
     const userCod = document.getElementById("numero").value
     
@@ -21,9 +22,20 @@ function Comprobar(){
         celResult[curRow].children[i].children[0].innerHTML = userCod[i]
     }
 
+    turns--
+    if(turns != 0){
+        document.getElementById("info").innerHTML = "Te quedan " + turns + " turnos!"
+    }
+    else{
+        let status = document.getElementsByClassName("w100 info")[0]
+
+        document.getElementById("info").innerHTML = "Has perdido"
+        status.style.backgroundColor="crimson"
+        status.style.borderColor="crimson";
+    }
+    
     checkCel(celResult)
 
-    document.getElementById("info").innerHTML = "Segundo intento, suerte!"
     curRow++
 }
 
@@ -42,8 +54,16 @@ function checkCel(celResult){
             cel.style.backgroundColor="#6b6b6b"
         }
     }
-
     if(res == 5){
-        document.getElementById("info").innerHTML = "Has guanyat"
+        let btn = document.getElementById("check")
+        let status = document.getElementsByClassName("w100 info")[0]
+
+        document.getElementById("info").innerHTML = "Has ganado"
+
+        status.style.backgroundColor="green"
+        status.style.borderColor="green";
+
+        btn.disabled = true;
+        btn.style.backgroundColor="#BABABA"
     }
 }

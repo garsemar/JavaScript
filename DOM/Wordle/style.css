@@ -55,8 +55,8 @@ main{
     margin: 10px;
 }
 .info{
-    border-color: crimson;
-    background-color: crimson;
+    border-color: #1aa1f0;
+    background-color: #1aa1f0;
     color: white;
 }
 label{
