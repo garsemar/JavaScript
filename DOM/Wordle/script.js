@@ -1,6 +1,8 @@
 const codigo = [];
 const maxIntento = 5;
 
+document.getElementById("numero").focus()
+
 for (i = 0; i < maxIntento; i++) {
     createDiv()
 }
@@ -18,33 +20,55 @@ codigoSecreto();
 let curRow = 0
 let turns = maxIntento
 function Comprobar() {
+    document.getElementById("numero").focus()
+
     const userCod = document.getElementById("numero").value
 
     let celResult = document.getElementsByClassName("rowResult")
 
     let btn = document.getElementById("check")
 
-    for (i = 0; i < 5; i++) {
-        celResult[curRow].children[i].children[0].innerHTML = userCod[i]
+    if(checkInput(userCod)){
+        for (i = 0; i < 5; i++) {
+            celResult[curRow].children[i].children[0].innerHTML = userCod[i]
+        }
+    
+        turns--
+        if (turns != 0) {
+            document.getElementById("info").innerHTML = "Te quedan " + turns + " turnos!"
+        }
+        else {
+            loseGame()
+            btn.disabled = true
+            btn.style.backgroundColor = "#BABABA"
+        }
+    
+        if(checkCel(celResult)){
+            winGame()
+            btn.disabled = true
+            btn.style.backgroundColor = "#BABABA"
+        }
+    
+        curRow++
     }
+    document.getElementById("numero").value = ""
+}
 
-    turns--
-    if (turns != 0) {
-        document.getElementById("info").innerHTML = "Te quedan " + turns + " turnos!"
-    }
-    else {
-        loseGame()
-        btn.disabled = true
-        btn.style.backgroundColor = "#BABABA"
-    }
+function checkInput(userCod){
+    var userList = userCod.toString().split('');
+    let valid = true
 
-    if(checkCel(celResult)){
-        winGame()
-        btn.disabled = true
-        btn.style.backgroundColor = "#BABABA"
+    for(i = 0; i < userList.length; i++){
+        if(!Number.isInteger(parseInt(userList[i]))){
+            valid = false
+        }
     }
-
-    curRow++
+    
+    if(userCod.length == 5 && valid){
+        console.log("valid")
+        return true
+    }
+    return false
 }
 
 function checkCel(celResult) {
@@ -52,11 +76,11 @@ function checkCel(celResult) {
     for (i = 0; i < 5; i++) {
         let cel = celResult[curRow].children[i].children[0]
         if (cel.innerHTML == codigo[i]) {
-            cel.style.backgroundColor = "green"
+            cel.style.backgroundColor = "#04cc04"
             res++
         }
         else if (codigo.includes(parseInt(cel.innerHTML))) {
-            cel.style.backgroundColor = "yellow"
+            cel.style.backgroundColor = "#f0d01f"
         }
         else {
             cel.style.backgroundColor = "#6b6b6b"
@@ -72,8 +96,14 @@ function winGame(){
 
     document.getElementById("info").innerHTML = "Has ganado"
 
-    status.style.backgroundColor = "green"
-    status.style.borderColor = "green";    
+    status.style.backgroundColor = "#04cc04"
+    status.style.borderColor = "#04cc04";
+
+    for (i = 0; i < 5; i++) {
+        let secretOut = document.getElementById("codigo")
+
+        secretOut.children[0].children[i].children[0].innerHTML = codigo[i]
+    }
 }
 function loseGame(){
     let status = document.getElementsByClassName("w100 info")[0]
@@ -81,22 +111,28 @@ function loseGame(){
     document.getElementById("info").innerHTML = "Has perdido"
     status.style.backgroundColor = "crimson"
     status.style.borderColor = "crimson";
+
+    for (i = 0; i < 5; i++) {
+        let secretOut = document.getElementById("codigo")
+
+        secretOut.children[0].children[i].children[0].innerHTML = codigo[i]
+    }
 }
 
 function createDiv() {
-    var parent = document.getElementById("Result");
+    var gneral = document.getElementById("Result");
 
-    var rowContainer = document.createElement("div");
-    rowContainer.classList.add("rowResult", "w100", "flex", "wrap");
-    for (let j = 0; j < 5; j++) {
-        var squareContainer = document.createElement("div");
-        squareContainer.classList.add("w20");
+    var row = document.createElement("div");
+    row.classList.add("rowResult", "w100", "flex", "wrap");
+    for (j = 0; j < 5; j++) {
+        var container = document.createElement("div");
+        container.classList.add("w20");
 
-        var square = document.createElement("div");
-        square.classList.add("celResult", "flex");
+        var userInp = document.createElement("div");
+        userInp.classList.add("celResult", "flex");
 
-        squareContainer.appendChild(square);
-        rowContainer.appendChild(squareContainer);
+        container.appendChild(userInp);
+        row.appendChild(container);
     }
-    parent.appendChild(rowContainer);
+    gneral.appendChild(row);
 }
